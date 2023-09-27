@@ -53,7 +53,7 @@ Use the text editor to create, edit, and save your text documents. Your document
 
 Click on the "Install!" button to install the application as a Progressive Web App (PWA) on your device for easy access.
 
-Contributing
+## Contributing
 We welcome contributions from the community! If you'd like to contribute to J.A.T.E, please follow these steps:
 
 Fork the repository.
