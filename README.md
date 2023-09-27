@@ -68,3 +68,8 @@ Submit a pull request to the main repository.
 
 Please ensure that your code adheres to the project's coding standards and includes proper documentation.
 
+## Contributions
+WiseSalor
+EmilyRose
+
+
