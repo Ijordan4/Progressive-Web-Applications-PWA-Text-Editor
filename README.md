@@ -45,7 +45,7 @@ npm i
 ## Usage
 Start the development server:
 
-npm run start
+npm start
 
 Open your web browser and navigate to http://localhost:3000 to access the J.A.T.E text editor.
 
