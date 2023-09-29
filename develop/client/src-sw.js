@@ -1,37 +1,37 @@
-const { offlineFallback,warmStrategyCache } = require('workbox-recipes');
-const { CacheFirst, StaleWhileRevalidate } = require('workbox-strategies');
-const { registerRoute } = require('workbox-routing');
-const { CacheableResponsePlugin } = require('workbox-cacheable-response');
-const { ExpirationPlugin } = require('workbox-expiration');
-const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
+const { myOfflineFallback, myWarmStrategyCache } = require('workbox-recipes');
+const { myCacheFirst, myStaleWhileRevalidate } = require('workbox-strategies');
+const { myRegisterRoute } = require('workbox-routing');
+const { myCacheableResponsePlugin } = require('workbox-cacheable-response');
+const { myExpirationPlugin } = require('workbox-expiration');
+const { myPrecacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 
-precacheAndRoute(self.__WB_MANIFEST);
+myPrecacheAndRoute(self.__WB_MANIFEST);
 
-const pageCache = new CacheFirst({
-  cacheName: 'page-cache',
+const myPageCache = new myCacheFirst({
+  cacheName: 'my-page-cache',
   plugins: [
-    new CacheableResponsePlugin({
+    new myCacheableResponsePlugin({
       statuses: [0, 200],
     }),
-    new ExpirationPlugin({
+    new myExpirationPlugin({
       maxAgeSeconds: 30 * 24 * 60 * 60,
     }),
   ],
 });
 
-warmStrategyCache({
-  urls: ['/index.html', '/'],
-  strategy: pageCache,
+myWarmStrategyCache({
+  urls: ['/my-index.html', '/'],
+  strategy: myPageCache,
 });
 
-registerRoute(({ request }) => request.mode === 'navigate', pageCache);
-registerRoute(
+myRegisterRoute(({ request }) => request.mode === 'navigate', myPageCache);
+myRegisterRoute(
   ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
-  new StaleWhileRevalidate({
+  new myStaleWhileRevalidate({
     // Name of the cache storage.
-    cacheName: 'asset-cache',
+    cacheName: 'my-asset-cache',
     plugins: [
-      new CacheableResponsePlugin({
+      new myCacheableResponsePlugin({
         statuses: [0, 200],
       }),
     ],
