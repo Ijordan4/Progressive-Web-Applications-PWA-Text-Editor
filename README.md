@@ -43,6 +43,7 @@ Install the project dependencies:
 npm i
 
 ## Usage
+
 Start the development server:
 
 npm start
@@ -54,6 +55,7 @@ Use the text editor to create, edit, and save your text documents. Your document
 Click on the "Install!" button to install the application as a Progressive Web App (PWA) on your device for easy access.
 
 ## Contributing
+
 I welcome contributions from the community! If you'd like to contribute to J.A.T.E, please follow these steps:
 
 Fork the repository.
@@ -68,8 +70,6 @@ Submit a pull request to the main repository.
 
 Please ensure that your code adheres to the project's coding standards and includes proper documentation.
 
-## Contributions
+## Contributers
+
 WiseSalor
-EmilyRose
-
-
