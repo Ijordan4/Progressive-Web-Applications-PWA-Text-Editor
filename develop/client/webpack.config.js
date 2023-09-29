@@ -1,51 +1,51 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const WebpackPwaManifest = require("webpack-pwa-manifest");
-const path = require("path");
-const { InjectManifest } = require("workbox-webpack-plugin");
+const MyHtmlWebpackPlugin = require("html-webpack-plugin");
+const MyWebpackPwaManifest = require("webpack-pwa-manifest");
+const MyPath = require("path");
+const { MyInjectManifest } = require("workbox-webpack-plugin");
 
 module.exports = () => {
   return {
     mode: "development",
     entry: {
-      main: "./src/js/index.js",
-      install: "./src/js/install.js",
-      database: "./src/js/database.js",
-      editor: "./src/js/editor.js",
-      header: "./src/js/header.js",
+      myMain: "./src/js/index.js",
+      myInstall: "./src/js/install.js",
+      myDatabase: "./src/js/database.js",
+      myEditor: "./src/js/editor.js",
+      myHeader: "./src/js/header.js",
     },
     output: {
       filename: "[name].bundle.js",
-      path: path.resolve(__dirname, "dist"),
+      path: MyPath.resolve(__dirname, "dist"),
     },
     plugins: [
       
-      new HtmlWebpackPlugin({
+      new MyHtmlWebpackPlugin({
         template: "./index.html",
-        title: "JATE",
+        title: "My JATE",
       }),
 
      
-      new InjectManifest({
+      new MyInjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
       }),
 
     
-      new WebpackPwaManifest({
+      new MyWebpackPwaManifest({
         fingerprints: false,
         inject: true,
-        name: "Just Another Text Editor",
-        short_name: "JATE",
-        description: "Just another text editor",
+        name: "My Just Another Text Editor",
+        short_name: "My JATE",
+        description: "My just another text editor",
         background_color: "#225ca3",
         theme_color: "#225ca3",
         start_url: "/",
         publicPath: "./",
         icons: [
           {
-            src: path.resolve("src/images/logo.png"),
+            src: MyPath.resolve("src/images/logo.png"),
             sizes: [96, 128, 192, 256, 384, 512],
-            destination: path.join("assets", "icons"),
+            destination: MyPath.join("assets", "icons"),
           },
         ],
       }),
