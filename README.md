@@ -68,8 +68,11 @@ Submit a pull request to the main repository.
 
 Please ensure that your code adheres to the project's coding standards and includes proper documentation.
 
-## Contributions
-WiseSalor
-EmilyRose
+## Credits
 
+Service Workers - Web APIs | MDN - MDN's guide on Service Workers.
+
+Heroku Deployment Guide 
+
+Webpack Documentation 
 
