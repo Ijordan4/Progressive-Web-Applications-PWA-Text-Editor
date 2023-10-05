@@ -1,40 +1,40 @@
-const { myOfflineFallback, myWarmStrategyCache } = require('workbox-recipes');
-const { myCacheFirst, myStaleWhileRevalidate } = require('workbox-strategies');
-const { myRegisterRoute } = require('workbox-routing');
-const { myCacheableResponsePlugin } = require('workbox-cacheable-response');
-const { myExpirationPlugin } = require('workbox-expiration');
-const { myPrecacheAndRoute } = require('workbox-precaching/precacheAndRoute');
+const { precacheAndRoute } = require('workbox-precaching');
+const { CacheFirst, StaleWhileRevalidate } = require('workbox-strategies');
+const { registerRoute } = require('workbox-routing');
+const { CacheableResponsePlugin } = require('workbox-cacheable-response');
+const { ExpirationPlugin } = require('workbox-expiration');
 
-myPrecacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(self.__WB_MANIFEST);
 
-const myPageCache = new myCacheFirst({
+const pageCache = new CacheFirst({
   cacheName: 'my-page-cache',
   plugins: [
-    new myCacheableResponsePlugin({
+    new CacheableResponsePlugin({
       statuses: [0, 200],
     }),
-    new myExpirationPlugin({
-      maxAgeSeconds: 30 * 24 * 60 * 60,
+    new ExpirationPlugin({
+      maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
     }),
   ],
 });
 
-myWarmStrategyCache({
-  urls: ['/my-index.html', '/'],
-  strategy: myPageCache,
-});
+registerRoute(['/my-index.html', '/'], pageCache);
 
-myRegisterRoute(({ request }) => request.mode === 'navigate', myPageCache);
-myRegisterRoute(
+registerRoute(
+  ({ request }) => request.mode === 'navigate',
+  pageCache
+);
+
+registerRoute(
   ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
-  new myStaleWhileRevalidate({
-    // Name of the cache storage.
+  new StaleWhileRevalidate({
     cacheName: 'my-asset-cache',
     plugins: [
-      new myCacheableResponsePlugin({
+      new CacheableResponsePlugin({
         statuses: [0, 200],
       }),
     ],
   })
 );
+
 
